@@ -1,7 +1,7 @@
 import express from 'express'
 import mongoose from 'mongoose'
 import dns from "node:dns"
-import studentRouter from './routes/studentRouter.js';
+
 import userRouter from './routes/userRouter.js';
 
 import { verify } from 'node:crypto';
@@ -28,7 +28,7 @@ const app = express()
 app.use(express.json())
 
 app.use(authenticateUser)
-app.use("/students", studentRouter)
+
 app.use("/users", userRouter)
 app.use("/products", productRouter)
 
