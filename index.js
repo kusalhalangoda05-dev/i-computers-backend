@@ -7,10 +7,11 @@ import userRouter from './routes/userRouter.js';
 import { verify } from 'node:crypto';
 import authenticateUser from './middlewares/authenticate.js';
 import productRouter from './routes/productRouter.js';
-
+import dotenv from 'dotenv'
+dotenv.config()
 
 dns.setServers(["1.1.1.1", "8.8.8.8"]);
-const mongoUri = "mongodb+srv://adimn:123@cluster0.grmquas.mongodb.net/?appName=Cluster0"
+const mongoUri = process.env.MONGO_URI
 
 mongoose.connect(mongoUri).then(
     () => {
