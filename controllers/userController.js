@@ -17,6 +17,7 @@ export async function createUser(req,res){
                 firstName : req.body.firstName,
                 lastName : req.body.lastName,
                 password : passwordHash
+                
             }
         );
 
@@ -26,7 +27,7 @@ export async function createUser(req,res){
 
     }catch(error){
         console.error("Error creating user:", error);
-        return res.json({ message: "Internal server error" });
+        return res.status(500).json({ message: "Internal server error" });
     }
 
 
@@ -60,9 +61,9 @@ export async function loginUser(req,res){
                 isBlocked : user.isBlocked
             }
 
-            const token = jwt.sign(userInfo, process.env.JWT_SECRET)
+            const token = jwt.sign(userInfo,"comp99#12@")
 
-            res.json({token : token})
+            res.json({token : token, isAdmin : user.isAdmin})
 
             
         } else{
